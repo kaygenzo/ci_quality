@@ -1,0 +1,59 @@
+sonarqube {
+    properties {
+        // STANDARD
+        property("sonar.language", "kotlin,java")
+        property("sonar.sourceEncoding", "UTF-8")
+        property("sonar.host.url", "")
+        property("sonar.issuesReport.html.enable", "true")
+        property("sonar.issuesReport.console.enable", "false")
+
+        // SOURCES
+        property("sonar.sources", "src")
+        property("sonar.exclusions","**/androidTest*/**,**/test**/**")
+        property("sonar.tests", "src/androidTest/java,src/test/java")
+        property("sonar.test.inclusions","**/androidTest**/**,**/test**/**")
+        property("sonar.java.binaries", "build")
+
+        // COVERAGE
+        property("sonar.coverage.exclusions", "**/test/**," +
+                "**/androidTest/**," +
+                "**/R.class," +
+                "**/BuildConfig.*," +
+                "**/Manifest*.*," +
+                "**/*Test*.*," +
+                "**/com/example/databinding/*," +
+                "**/com/example/generated/callback/*," +
+                "**/*Dto*.*," +
+                "**/android/databinding/*," +
+                "**/androidx/databinding/*," +
+                "**/di/module/*," +
+                "**/*MapperImpl*.*," +
+                "**/BuildConfig.*," +
+                "**/*Component*.*," +
+                "**/*BR*.*," +
+                "**/Manifest*.*," +
+                "**/*Companion*.*," +
+                "**/*Module.*," +
+                "**/*Dagger*.*," +
+                "**/*MembersInjector*.*," +
+                "**/*Extensions*.*," +
+                "**/InputMethodManagerLeaks.*," +
+                "**/*_Factory*.*," +
+                "**/*_Provide*Factory*.*")
+
+        // DETEKT
+        property("detekt.sonar.kotlin.config.path", "$rootDir/config/detekt/detekt.yml")
+        property("detekt.sonar.kotlin.filters", "**/resources/**,**/build/**,**/target/**")
+        property("sonar.kotlin.detekt.reportPaths", "$buildDir/reports/detekt/detekt.xml")
+
+        // LINT
+        property("sonar.androidLint.reportPaths", "build/reports/lint-results-debug.xml")
+
+        property("sonar.dependencyCheck.xmlReportPath",
+                "$rootProject.buildDir/reports/dependency-check-report.xml")
+        property("sonar.dependencyCheck.jsonReportPath",
+                "$rootProject.buildDir/reports/dependency-check-report.json")
+        property("sonar.dependencyCheck.htmlReportPath",
+                "$rootProject.buildDir/reports/dependency-check-report.html")
+    }
+}
